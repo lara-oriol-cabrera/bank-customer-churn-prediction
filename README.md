@@ -48,6 +48,7 @@ The dataset was also checked for duplicate rows and missing values. No duplicate
 ### 3.1 Target Variable
 
 The target variable, Exited, shows a clear class imbalance: Approximately 80% of customers stayed with the bank. Approximately 20% of customers left. 
+![Target variable](images/Target%Variable%Graph.png)
 
 This imbalance was taken into consideration during model training and evaluation.
 
@@ -55,7 +56,11 @@ This imbalance was taken into consideration during model training and evaluation
 
 The numerical variables were examined using summary statistics. No concerning outliers or clearly invalid values were identified.
 
+![Summary statistics](images/Numerical%Predictors%summary.png) 
+
 Then, mean values were then compared between customers who stayed and those who left. The main differences were observed in:
+
+![Numerical variables comparison](images/Numerical%Predictors%vs.%Target%variable%.png) 
 
 Age: Customers who left were, on average, approximately 7.4 years older than customers who stayed.
 Balance: Customers who left had, on average, approximately 18,400 higher account balances.
@@ -68,13 +73,15 @@ These variables were therefore identified as particularly interesting for furthe
 Categorical variables were analyzed by comparing churn rates across their different categories.
 
 Noticeable differences were observed for variables such as:
-FOTO!
+![Categorical variables comparison](images/Categorical%predictors%vs%target%variable.png)
+![Categorical variable comparison](images/Categorical%Predictos%vs%Target%Variable%02.png)
 
 - Geography
 - Gender
 - IsActiveMember
 
 The strongest relationship was found between Complain and Exited. Approximately 99.5% of customers who made a complaint left the bank. This was also reflected in the correlation matrix, where Complain and Exited showed an extremely strong correlation of approximately 1.
+![Correlation matrix](images/Correlation%Matrix%Graph.png) 
 
 This unusually strong relationship was investigated further because it could indicate potential data leakage or a specific characteristic of how the dataset was constructed.
 
@@ -180,6 +187,8 @@ The feature importance analysis of the final model showed that the most influent
 | `Gender_Male` | 7.1% |
 | `Balance` | 6.1% |
 
+![Feature importance](images/Feature%Importance%Graph.png)
+
 NumOfProducts, Age, and IsActiveMember were particularly influential in the model's predictions. Geography, especially Germany, also contributed substantially.
 
 These results indicate that these variables are useful for identifying patterns associated with customer churn. However, feature importance represents predictive relevance, not causation. Therefore, these variables should be interpreted as indicators of churn risk rather than direct causes of customer churn.
@@ -188,6 +197,8 @@ The HasBalance feature had zero feature importance in the final model, suggestin
 
 ## 9.- SHAP (Explainable AI) 
 SHAP (SHapley Additive exPlanations) was used to better understand how the main features influence the model's predictions. While feature importance shows which variables are most important overall, SHAP also shows the direction of their impact: values on the right increase the predicted probability of churn, while values on the left decrease it. The color indicates the feature value, with red representing higher values and blue representing lower values.
+
+![SHAP](images/SHAP%Graph.png)
 
 The SHAP analysis provides several relevant insights:
 
